@@ -21,7 +21,6 @@ class AdminSeeder extends Seeder
             "email"=> "mr319242@gmail.com",
             'phone' => '01000000000',
             "password"=> bcrypt("11111111"),
-            'type'=>'superadmin',
             'role_id' => $first_role_id
         ]);
     }

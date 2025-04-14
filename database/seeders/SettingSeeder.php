@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\dashboard\MainSetting;
 use Illuminate\Database\Seeder;
 use App\Models\dashboard\Setting;
 use Illuminate\Support\Facades\DB;
@@ -19,15 +20,14 @@ class SettingSeeder extends Seeder
         Setting::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         // Create a default setting for the restaurant with ID 0
-        $setting = new Setting();
+        $setting = new MainSetting();
         $setting->create([
-            'resturant_id' => null,
-            'name' => 'Menu Smart',
+            'name' => 'Bigo',
             'email' => 'mr319242@gmil.com',
             'phone' => '+201011642731',
             'address' => ' العراق - بغداد ',
             'logo' => 'default-logo.png',
-            'banner' => 'default-banner.png',
+            'favicon' => 'default-banner.png',
             'description' => 'Default Description',
             'facebook' => 'https://facebook.com',
             'twitter' => 'https://twitter.com',

@@ -211,7 +211,6 @@ class ResturantController extends Controller
             File::deleteDirectory($restaurantFolder);
         }
         return $this->success_message(' تم حذف المطعم بنجاح ');
-
-
+        
     }
 }

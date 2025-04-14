@@ -43,7 +43,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="name"> اسم المطعم <span class="required_span">
+                                                            <label for="name"> الاسم  <span class="required_span">
                                                                     *
                                                                 </span> </label>
                                                             <input required type="text" id="name"
@@ -99,13 +99,13 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="title"> وصف عن المطعم </label>
+                                                            <label for="title"> وصف مختصر عن الموقع </label>
                                                             <textarea name="description" class="form-control">{{ old('description', $setting->description) }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-12">
                                                         <div class="form-group">
-                                                            <label for="address"> لوجو المطعم <span class="required_span">
+                                                            <label for="address"> لوجو الموقع <span class="required_span">
                                                                     * </span> </label>
                                                             <input type="file" class="form-control" name="logo"
                                                                 id="single-image-edit">
@@ -114,9 +114,9 @@
                                                     </div>
                                                     <div class="col-lg-6 col-12">
                                                         <div class="form-group">
-                                                            <label for="address"> البانر الاساسي <span
+                                                            <label for="address"> الصورة المصغرة  <span
                                                                     class="required_span"> * </span> </label>
-                                                            <input type="file" class="form-control" name="banner"
+                                                            <input type="file" class="form-control" name="favicon"
                                                                 id="single-image-edit2">
                                                         </div>
                                                         <div id="imagePreview" class="flex-wrap mt-3 d-flex"></div>
@@ -270,7 +270,7 @@
             showUpload: false,
             initialPreviewAsData: true,
             initialPreview: [
-                "{{ asset($setting->getBanner()) }}"
+                "{{ asset($setting->getFavicon()) }}"
             ],
         });
     </script>

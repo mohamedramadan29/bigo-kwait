@@ -2,10 +2,12 @@
 
 namespace App\Models\dashboard;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Resturant extends Model
+class Store extends Model
 {
+    protected $table = 'stores';
     protected $fillable = [
         "name",
         "description",
@@ -19,9 +21,9 @@ class Resturant extends Model
         'banner'
     ];
 
-    public function Owner()
+    public function User()
     {
-        return $this->belongsTo(Admin::class, 'owner_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getLogo()

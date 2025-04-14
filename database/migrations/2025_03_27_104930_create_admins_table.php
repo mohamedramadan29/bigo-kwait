@@ -12,14 +12,11 @@ return new class extends Migration {
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('resturant_id')->nullable()->references('id')->on('resturants')->cascadeOnDelete();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');
             $table->foreignId('role_id')->references('id')->on('roles')->cascadeOnDelete();
-            $table->string('type')->nullable();
-            $table->integer('restaurant_id')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

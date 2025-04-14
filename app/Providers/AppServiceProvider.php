@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\dashboard\MainSetting;
 use App\Models\dashboard\Setting;
 use App\Models\dashboard\Resturant;
 use Illuminate\Pagination\Paginator;
@@ -26,65 +27,65 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', function ($view) {
-            $route = Route::current();
+        // View::composer('*', function ($view) {
+        //     $route = Route::current();
 
-            if (!$route)
-                return;
+        //     if (!$route)
+        //         return;
 
-            $restaurant = $route->parameter('restaurant');
+        //     $restaurant = $route->parameter('restaurant');
 
-            if ($restaurant instanceof Resturant) {
-                // إذا كان Model Bound
-                $view->with('restaurant', $restaurant);
+        //     if ($restaurant instanceof Resturant) {
+        //         // إذا كان Model Bound
+        //         $view->with('restaurant', $restaurant);
 
-                // إعدادات المطعم
-                $setting = Setting::where('resturant_id', $restaurant->id)->first();
-                if ($setting) {
-                    $view->with('resturantsetting', $setting);
-                }
-            } elseif ($restaurant) {
-                // إذا كان مجرد slug
-                $restaurantModel = Resturant::where('slug', $restaurant)->first();
+        //         // إعدادات المطعم
+        //         $setting = Setting::where('resturant_id', $restaurant->id)->first();
+        //         if ($setting) {
+        //             $view->with('resturantsetting', $setting);
+        //         }
+        //     } elseif ($restaurant) {
+        //         // إذا كان مجرد slug
+        //         $restaurantModel = Resturant::where('slug', $restaurant)->first();
 
-                if ($restaurantModel) {
-                    $view->with('restaurant', $restaurantModel);
+        //         if ($restaurantModel) {
+        //             $view->with('restaurant', $restaurantModel);
 
-                    // إعدادات المطعم
-                    $setting = Setting::where('resturant_id', $restaurantModel->id)->first();
-                    if ($setting) {
-                        $view->with('resturantsetting', $setting);
-                    }
-                } else {
-                    // المطعم غير موجود - نجيب الإعدادات العامة
-                    $defaultSetting = Setting::whereNull('resturant_id')->first();
-                    if ($defaultSetting) {
-                        $view->with('resturantsetting', $defaultSetting);
-                    }
-                }
-
-            } else {
-                // لا يوجد slug في الرابط - نعرض الإعدادات العامة
-                $defaultSetting = Setting::whereNull('resturant_id')->first();
-                if ($defaultSetting) {
-                    $view->with('resturantsetting', $defaultSetting);
-                }
-            }
-        });
+        //             // إعدادات المطعم
+        //             $setting = Setting::where('resturant_id', $restaurantModel->id)->first();
+        //             if ($setting) {
+        //                 $view->with('resturantsetting', $setting);
+        //             }
+        //         } else {
+        //             // المطعم غير موجود - نجيب الإعدادات العامة
+        //             $defaultSetting = Setting::whereNull('resturant_id')->first();
+        //             if ($defaultSetting) {
+        //                 $view->with('resturantsetting', $defaultSetting);
+        //             }
+        //         }
+        //     } else {
+        //         // لا يوجد slug في الرابط - نعرض الإعدادات العامة
+        //         $defaultSetting = Setting::whereNull('resturant_id')->first();
+        //         if ($defaultSetting) {
+        //             $view->with('resturantsetting', $defaultSetting);
+        //         }
+        //     }
+        // });
 
         ///// Get Settings And Share
 
         view()->composer('dashboard.*', function () {
-            if (!auth('admin')->check()) {
-                $setting = Setting::where('resturant_id', null)->first();
-            }
-            if (Auth::guard('admin')->check()) {
-                if (auth('admin')->user()->resturant_id == null) {
-                    $setting = Setting::where('resturant_id', null)->first();
-                } else {
-                    $setting = Setting::where('resturant_id', auth('admin')->user()->resturant_id)->first();
-                }
-            }
+            // if (!auth('admin')->check()) {
+            //     $setting = MainSetting::first();
+            // }
+            $setting = MainSetting::first();
+            // if (Auth::guard('admin')->check()) {
+            //     if (auth('admin')->user()->resturant_id == null) {
+            //         $setting = Setting::where('store_id', null)->first();
+            //     } else {
+            //         $setting = Setting::where('store_id', auth('admin')->user()->resturant_id)->first();
+            //     }
+            // }
 
             view()->share([
                 'setting' => $setting

@@ -10,18 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('resturants', function (Blueprint $table) {
+        Schema::create('company_profiles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('slug')->unique();
-            $table->integer('owner_id');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
-            $table->string('address');
             $table->string('logo');
-            $table->string('banner');
-            $table->tinyInteger('status')->default(0);
+            $table->string('commercial_license')->comment('الرخصة التجارية');
+            $table->string('signature_approval')->comment('اعتماد التوقيع ');
+            $table->string('identity_card')->comment('البطاقة الشخصية');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('resturants');
+        Schema::dropIfExists('company_profiles');
     }
 };

@@ -6,27 +6,35 @@
                       href="{{ route('dashboard.welcome') }}"><i class="la la-home"></i><span class="menu-title"
                           data-i18n="nav.dash.main">الرئيسية</span></a>
               </li>
-              @can('superadmin')
-                  <li class="nav-item {{ Route::is('dashboard.resturants.*') ? 'active' : '' }}"><a href="#"><i
-                              class="la la-building"></i><span class="menu-title" data-i18n="nav.role.main"> المطاعم
+              @can('companies')
+                  <li class="nav-item {{ Route::is('dashboard.companies.*') ? 'active' : '' }}"><a href="#"><i
+                              class="la la-building"></i><span class="menu-title" data-i18n="nav.role.main"> الشركات
                           </span></a>
                       <ul class="menu-content">
-                          <li class="{{ Route::is('dashboard.resturants.index') ? 'active' : '' }}">
-                              <a class="menu-item" href="{{ route('dashboard.resturants.index') }}"
+                          <li class="{{ Route::is('dashboard.companies.index') ? 'active' : '' }}">
+                              <a class="menu-item" href="{{ route('dashboard.companies.index') }}"
                                   data-i18n="nav.role.index">
-                                  جميع المطاعم </a>
+                                  جميع الشركات </a>
                           </li>
-                          <li class="{{ Route::is('dashboard.resturants.create') ? 'active' : '' }}">
-                              <a class="menu-item" href="{{ route('dashboard.resturants.create') }}"
-                                  data-i18n="nav.templates.vert.classic_menu"> <i class="la la-plus"></i> <span
-                                      class="menu-title"> اضافة مطعم </a>
+                      </ul>
+                  </li>
+              @endcan
+              @can('users')
+                  <li class="nav-item {{ Route::is('dashboard.users.*') ? 'active' : '' }}"><a href="#"><i
+                              class="la la-users"></i><span class="menu-title" data-i18n="nav.role.main"> الافراد
+                          </span></a>
+                      <ul class="menu-content">
+                          <li class="{{ Route::is('dashboard.users.index') ? 'active' : '' }}">
+                              <a class="menu-item" href="{{ route('dashboard.users.index') }}"
+                                  data-i18n="nav.role.index">
+                                  جميع الافراد   </a>
                           </li>
                       </ul>
                   </li>
               @endcan
               @can('superadmin')
                   <li class="nav-item{{ Route::is('dashboard.admins.*') ? 'active' : '' }}"><a href="#"><i
-                              class="la la-users"></i><span class="menu-title" data-i18n="nav.users.main"> الادارين
+                              class="bi bi-person-lines-fill"></i><span class="menu-title" data-i18n="nav.users.main"> الادارين
                           </span></a>
                       <ul class="menu-content">
                           <li class="{{ Route::is('dashboard.admins.index') ? 'active' : '' }}">
@@ -42,7 +50,33 @@
                       </ul>
                   </li>
               @endcan
-              @can('admin')
+              @can('payment_transactions')
+                  <li class="nav-item{{ Route::is('dashboard.payments.*') ? 'active' : '' }}"><a href="#"><i
+                              class="bi bi-credit-card"></i><span class="menu-title" data-i18n="nav.users.main"> عمليات الدفع
+                          </span></a>
+                      <ul class="menu-content">
+                          <li class="{{ Route::is('dashboard.payments.index') ? 'active' : '' }}">
+                              <a class="menu-item" href="{{ route('dashboard.payments.index') }}"
+                                  data-i18n="nav.users.user_profile">  عمليات الدفع
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+              @endcan
+              @can('stores')
+                  <li class="nav-item{{ Route::is('dashboard.stores.*') ? 'active' : '' }}"><a href="#"><i
+                              class="bi bi-shop"></i><span class="menu-title" data-i18n="nav.users.main"> ادارة المتاجر
+                          </span></a>
+                      <ul class="menu-content">
+                          <li class="{{ Route::is('dashboard.stores.index') ? 'active' : '' }}">
+                              <a class="menu-item" href="{{ route('dashboard.stores.index') }}"
+                                  data-i18n="nav.users.user_profile">  ادارة المتاجر
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+              @endcan
+              @can('products')
                   <li class="nav-item{{ Route::is('dashboard.categories.*') ? 'active' : '' }}"><a href="#"><i
                               class="la la-list"></i><span class="menu-title" data-i18n="nav.users.main"> تصنيفات المنتجات
                           </span></a>
@@ -60,7 +94,7 @@
                       </ul>
                   </li>
               @endcan
-              @can('admin')
+              @can('categories')
                   <li class="nav-item{{ Route::is('dashboard.products.*') ? 'active' : '' }}"><a href="#"><i
                               class="la la-list"></i><span class="menu-title" data-i18n="nav.users.main"> ادارة المنتجات
                           </span></a>
@@ -78,7 +112,7 @@
                       </ul>
                   </li>
               @endcan
-              @can('admin')
+              @can('orders')
                   <li class="nav-item{{ Route::is('dashboard.orders.*') ? 'active' : '' }}"><a href="#"><i
                               class="la la-list"></i><span class="menu-title" data-i18n="nav.users.main"> ادارة الطلبات
                           </span></a>
@@ -138,17 +172,6 @@
                                   data-i18n="nav.users.user_profile"> الاعدادات العامة
                               </a>
                           </li>
-
-                          @can('superadmin')
-
-
-                          <li class="{{ Route::is('dashboard.settings.upload.video') ? 'active' : '' }}">
-                              <a class="menu-item" href="{{ route('dashboard.settings.upload.video') }}"
-                                  data-i18n="nav.users.user_profile"> رفع الفيديو
-                              </a>
-                          </li>
-                      @endcan
-
                   </ul>
               </li>
           @endcan

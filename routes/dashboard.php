@@ -10,8 +10,12 @@ use App\Http\Controllers\dashboard\NotificationController;
 use App\Http\Controllers\dashboard\auth\ResetPasswordController;
 use App\Http\Controllers\dashboard\auth\ForgetPasswordController;
 use App\Http\Controllers\dashboard\CategoriesController;
+use App\Http\Controllers\dashboard\CompaniesController;
+use App\Http\Controllers\dashboard\PaymentTransactionController;
 use App\Http\Controllers\dashboard\ResturantController;
 use App\Http\Controllers\dashboard\SettingController;
+use App\Http\Controllers\dashboard\StoreController;
+use App\Http\Controllers\dashboard\UsersController;
 use App\Http\Controllers\dashboard\VideoController;
 
 Route::group([
@@ -85,6 +89,49 @@ Route::group([
             });
         });
         ################### End Admins Routes ###########################
+        ################### Start Companies Routes #####################
+        Route::group(['middleware' => 'can:companies', 'prefix' => 'companies', 'as' => 'companies.'], function () {
+            Route::controller(CompaniesController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::match(['get', 'post'], 'create', 'create')->name('create');
+                Route::match(['post', 'get'], 'update/{id}', 'update')->name('update');
+                Route::post('destroy/{id}', 'destroy')->name('destroy');
+            });
+        });
+        ################## End Companies Routes #####################
+
+         ################### Start Users Routes #####################
+         Route::group(['middleware' => 'can:users', 'prefix' => 'users', 'as' => 'users.'], function () {
+            Route::controller(UsersController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::match(['get', 'post'], 'create', 'create')->name('create');
+                Route::match(['post', 'get'], 'update/{id}', 'update')->name('update');
+                Route::post('destroy/{id}', 'destroy')->name('destroy');
+            });
+        });
+        ################## End Users Routes #####################
+
+          ################### Start Stores Routes #####################
+          Route::group(['middleware' => 'can:stores', 'prefix' => 'stores', 'as' => 'stores.'], function () {
+            Route::controller(StoreController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::match(['get', 'post'], 'create', 'create')->name('create');
+                Route::match(['post', 'get'], 'update/{id}', 'update')->name('update');
+                Route::post('destroy/{id}', 'destroy')->name('destroy');
+            });
+        });
+        ################## End Stores Routes #####################
+
+          ################### Start Stores Routes #####################
+          Route::group(['middleware' => 'can:payment_transactions', 'prefix' => 'payments', 'as' => 'payments.'], routes: function () {
+            Route::controller(PaymentTransactionController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::match(['get', 'post'], 'create', 'create')->name('create');
+                Route::match(['post', 'get'], 'update/{id}', 'update')->name('update');
+                Route::post('destroy/{id}', 'destroy')->name('destroy');
+            });
+        });
+        ################## End Stores Routes #####################
 
         ##################### Start Resturant Routes #########################
         Route::group(['middleware' => 'can:superadmin', 'prefix' => 'resturants', 'as' => 'resturants.'], function () {
@@ -99,7 +146,7 @@ Route::group([
 
 
         ##################### Start Resturant Routes #########################
-        Route::group(['middleware' => 'can:admin', 'prefix' => 'categories', 'as' => 'categories.'], function () {
+        Route::group(['middleware' => 'can:categories', 'prefix' => 'categories', 'as' => 'categories.'], function () {
             Route::controller(CategoriesController::class)->group(function () {
                 Route::get('index', 'index')->name('index');
                 Route::match(['get', 'post'], 'create', 'create')->name('create');
@@ -111,7 +158,7 @@ Route::group([
 
 
         ##################### Start Product  Routes #########################
-        Route::group(['middleware' => 'can:admin', 'prefix' => 'products', 'as' => 'products.'], function () {
+        Route::group(['middleware' => 'can:products', 'prefix' => 'products', 'as' => 'products.'], function () {
             Route::controller(ProductController::class)->group(function () {
                 Route::get('index', 'index')->name('index');
                 Route::match(['get', 'post'], 'create', 'create')->name('create');
@@ -122,7 +169,7 @@ Route::group([
         ################### End Product  Routes ###########################
 
         ##################### Start Product  Routes #########################
-        Route::group(['middleware' => 'can:admin', 'prefix' => 'orders', 'as' => 'orders.'], function () {
+        Route::group(['middleware' => 'can:orders', 'prefix' => 'orders', 'as' => 'orders.'], function () {
             Route::controller(OrderController::class)->group(function () {
                 Route::get('index', 'index')->name('index');
                 Route::match(['get', 'post'], 'create', 'create')->name('create');
@@ -132,7 +179,6 @@ Route::group([
             });
         });
         ################### End Product  Routes ###########################
-
 
         ################ Start Notification Controller ############
         Route::controller(NotificationController::class)->group(function () {
