@@ -16,12 +16,12 @@
   <!-- END MODERN JS-->
   <!-- BEGIN PAGE LEVEL JS-->
   <script src="{{ asset('assets/admin/') }}/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
- @if(Request::is('*/welcome'))
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
- @else
- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
- integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
- @endif
+  @if (Request::is('*/welcome'))
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  @else
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  @endif
 
 
 
@@ -34,11 +34,10 @@
   <!-- To creat Slug  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/speakingurl/14.0.1/speakingurl.min.js"></script>
 
-
   <script src="{{ asset('assets/vendor/locale/ar.js') }}"></script>
-
-  @toastifyJs
+  {!! NoCaptcha::renderJs() !!}
   @yield('js')
+  @toastifyJs
   <script>
       $("#single-image").fileinput({
           theme: 'fa5',

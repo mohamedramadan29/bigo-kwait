@@ -18,70 +18,228 @@
             @endforeach
         @endif
         <!-- Section -->
-        <section class="section bg-light">
-
+        <!-- Page Header Start -->
+        <div class="page-header">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="cart-details shadow bg-white stick-to-content mb-4">
-                            <div class="bg-dark dark p-4">
-                                <h5 class="mb-0"> تواصل معنا </h5>
+                    <div class="col-lg-12">
+                        <!-- Page Header Box Start -->
+                        <div class="page-header-box">
+                            <h1 class=""> تواصل معنا </h1>
+                            <nav class="wow fadeInUp" data-wow-delay="0.25s">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ url('/') }}">الرئيسية</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        تواصل معنا
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <!-- Page Header Box End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- Contact Information Section Start -->
+        <div class="contact-information">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- Contact Item Start -->
+                        <div class="contact-item wow fadeInUp" data-wow-delay="0.25s">
+                            <div class="contact-content">
+                                <div class="contact-content-title">
+                                    <h2> العنوان </h2>
+                                    <a href="#"><img src="{{ asset('assets/front') }}/images/icon-location.svg"
+                                            alt="" /></a>
+                                </div>
+                                <p> الكويت ، الكويت ،23232 </p>
                             </div>
-                            <div class="contact-social">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#"> <i class="bi bi-geo-alt-fill"></i> المملكة العربية السعودية
-                                            الرياض - حي الأندلس </a>
-                                    </li>
-                                    <li>
-                                        <a href="tel:552147147"> <i class="bi bi-telephone"></i> 552147147 </a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:Traghaif@gmail.com"> <i class="bi bi-envelope"></i>
-                                            Traghaif@gmail.com </a>
-                                    </li>
-                                </ul>
+                            <div class="contact-image">
+                                <figure class="image-anime">
+                                    <img src="images/contact-info-1.jpg" alt="" />
+                                </figure>
                             </div>
                         </div>
+                        <!-- Contact Item End -->
                     </div>
-                    <div class="col-xl-8 col-lg-7 order-lg-first">
-                        <div class="bg-white p-4 p-md-5 mb-4">
-                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i> تواصل معنا {{ $restaurant->name }}
-                            </h4>
-                            <form action="{{ route('contact.store',['restaurant' => $restaurant->slug]) }}" method="post">
-                                @csrf
-                                <div class="row mb-5">
-                                    <div class="form-group col-sm-6">
-                                        <label> الاسم :</label>
-                                        <input type="text" class="form-control" required name="name"
-                                            value="{{ old('name') }}">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label> رقم الهاتف :</label>
-                                        <input type="number" class="form-control" required name="phone"
-                                            value="{{ old('phone') }}">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label> عنوان الرسالة :</label>
-                                        <input type="text" class="form-control" required name="subject"
-                                            value="{{ old('subject') }}">
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                        <label> رسالتك :</label>
-                                        <textarea name="message" id="" class="form-control" style="height: 90px">{{ old('message') }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><span> ارسال </span></button>
-                                </div>
-                            </form>
 
+                    <div class="col-md-4">
+                        <!-- Contact Item Start -->
+                        <div class="contact-item wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="contact-content">
+                                <div class="contact-content-title">
+                                    <h2> اتصل بنا </h2>
+                                    <a href="#"><img src="{{ asset('assets/front') }}/images/icon-phone.svg"
+                                            alt="" /></a>
+                                </div>
+                                <p>(+0977) 123 456 789</p>
+                                <p>(+0966) 123 456 789</p>
+                            </div>
+                            <div class="contact-image">
+                                <figure class="image-anime">
+                                    <img src="images/contact-info-2.jpg" alt="" />
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- Contact Item End -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Contact Item Start -->
+                        <div class="contact-item wow fadeInUp" data-wow-delay="0.75s">
+                            <div class="contact-content">
+                                <div class="contact-content-title">
+                                    <h2> البريد الإلكتروني </h2>
+                                    <a href="#"><img src="{{ asset('assets/front') }}/images/icon-mail.svg"
+                                            alt="" /></a>
+                                </div>
+                                <p>info@domainname.com</p>
+                                <p>info@domainname.com</p>
+                            </div>
+                            <div class="contact-image">
+                                <figure class="image-anime">
+                                    <img src="images/contact-info-3.jpg" alt="" />
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- Contact Item End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact Information Section End -->
+
+        <!-- Contact Us Section Start -->
+        <div class="contact-us">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <!-- Contact Details Section Start -->
+                        <div class="contact-details">
+                            <!-- Section Title Start -->
+                            <div class="section-title">
+                                <h3 class="wow fadeInUp"> تواصل معنا </h3>
+                                <h2 class=""> ارسل لنا رسالتك وسوف نتواصل معك في اقرب وقت ممكن </h2>
+                            </div>
+                            <!-- Section Title End -->
+
+                            <!-- Contact Details Body Start -->
+                            <div class="contact-detail-body">
+                                <h3 class="wow fadeInUp" data-wow-delay="0.5s"> تابعنا :</h3>
+                                <ul class="wow fadeInUp" data-wow-delay="0.75s">
+                                    @if ($setting->facebook != null)
+                                        <li>
+                                            <a href="#"><i class="bi bi-facebook"></i></a>
+                                        </li>
+                                    @endif
+                                    @if ($setting->twitter != null)
+                                        <li>
+                                            <a href="#"><i class="bi bi-twitter-x"></i></a>
+                                        </li>
+                                    @endif
+
+                                    @if ($setting->instagram != null)
+                                        <li>
+                                            <a href="#"><i class="bi bi-instagram"></i></a>
+                                        </li>
+                                    @endif
+                                    @if ($setting->youtube != null)
+                                        <li>
+                                            <a href="#"><i class="bi bi-youtube"></i></a>
+                                        </li>
+                                    @endif
+                                    @if ($setting->whatsapp != null)
+                                        <li>
+                                            <a href="#"><i class="bi bi-whatsapp"></i></a>
+                                        </li>
+                                    @endif
+
+                                    @if ($setting->snapchat != null)
+                                        <li>
+                                            <a href="#"><i class="bi bi-snapchat"></i></a>
+                                        </li>
+                                    @endif
+                                    @if ($setting->tiktok != null)
+                                        <li>
+                                            <a href="#"><i class="bi bi-tiktok"></i></a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                            <!-- Contact Details Body End -->
+                        </div>
+                        <!-- Contact Details Section End -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="contact-form-box wow fadeInUp" data-wow-delay="0.5s">
+                            <!-- Contact Form Start -->
+                            <div class="contact-form">
+                                <form id="contactForm" action="#" method="POST" data-toggle="validator">
+                                    <div class="row">
+                                        <div class="form-group col-12 mb-4">
+                                            <input type="text" name="name" class="form-control" id="name"
+                                                placeholder="الاسم" required />
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group col-12 mb-4">
+                                            <input type="text" name="phone" class="form-control" id="phone"
+                                                placeholder="رقم الهاتف" required />
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group col-12 mb-4">
+                                            <input type="email" name="email" class="form-control" id="email"
+                                                placeholder="البريد الالكتروني" required />
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group col-12 mb-4">
+                                            <input type="text" name="subject" class="form-control" id="subject"
+                                                placeholder="عنوان الرسالة" required />
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group col-12 mb-4">
+                                            <textarea name="msg" class="form-control" id="msg" rows="7" placeholder="رسالتك" required></textarea>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn-default">
+                                                ارسال الرسالة
+                                            </button>
+                                            <div id="msgSubmit" class="h3 text-left hidden"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Contact Form End -->
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Contact Us Section End -->
 
-        </section>
-
+        <!-- Google Map Section Start -->
+        <div class="google-map wow fadeInUp" data-wow-delay="0.25s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d56481.31329163797!2d-82.30112043759952!3d27.776444959332093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnited%20States%20solar!5e0!3m2!1sen!2sin!4v1706008331370!5m2!1sen!2sin"
+                            width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Google Map Section End -->
 
     </div>
     <!-- Content / End -->

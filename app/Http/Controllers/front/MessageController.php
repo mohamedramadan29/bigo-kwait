@@ -14,9 +14,9 @@ class MessageController extends Controller
 {
     use Message_Trait;
 
-    public function index(Resturant $restaurant)
+    public function index()
     {
-        return view("front.contact",compact('restaurant'));
+        return view("front.contact");
     }
     public function store(Request $request)
     {

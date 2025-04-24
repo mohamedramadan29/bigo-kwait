@@ -2,3 +2,4 @@
 @include('front.layouts.navbar')
 @yield('content')
 @include('front.layouts.footer')
+@include('front.layouts.footer-script')

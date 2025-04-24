@@ -36,8 +36,8 @@ class SettingSeeder extends Seeder
             'whatsapp' => 'https://wa.me/01000000000',
             'snapchat' => 'https://snapchat.com',
             'tiktok' => 'https://tiktok.com/',
-            'main_color' => '#000000',
-            'secondary_color' => '#FFFFFF',
+            'main_color' => '#AF8C55',
+            'secondary_color' => '#EDC472',
         ]);
     }
 }

@@ -27,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $setting = MainSetting::first();
+        view()->share([
+            'setting' => $setting
+        ]);
         // View::composer('*', function ($view) {
         //     $route = Route::current();
 
