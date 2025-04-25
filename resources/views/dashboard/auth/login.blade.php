@@ -1,8 +1,7 @@
 @extends('dashboard.layouts.auth')
 @section('title', 'تسجيل الدخول')
-
 @section('content')
-    <div class="app-content content ">
+    <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
             </div>

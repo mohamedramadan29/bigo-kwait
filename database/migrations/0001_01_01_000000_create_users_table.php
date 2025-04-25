@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->integer('role_id')->nullable();
             $table->integer('status')->default(1);
             $table->tinyInteger('email_active')->default(0);
+            $table->integer('country_id')->nullable();
+            $table->integer('governrate_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

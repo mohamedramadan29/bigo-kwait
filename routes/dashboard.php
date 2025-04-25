@@ -1,22 +1,26 @@
 <?php
-use App\Http\Controllers\dashboard\OrderController;
-use App\Http\Controllers\dashboard\ProductController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\AdminController;
+use App\Http\Controllers\dashboard\BrandController;
+use App\Http\Controllers\dashboard\OrderController;
 use App\Http\Controllers\dashboard\RolesController;
-use App\Http\Controllers\dashboard\WelcomeController;
-use App\Http\Controllers\dashboard\auth\AuthController;
-use App\Http\Controllers\dashboard\NotificationController;
-use App\Http\Controllers\dashboard\auth\ResetPasswordController;
-use App\Http\Controllers\dashboard\auth\ForgetPasswordController;
-use App\Http\Controllers\dashboard\CategoriesController;
-use App\Http\Controllers\dashboard\CompaniesController;
-use App\Http\Controllers\dashboard\PaymentTransactionController;
-use App\Http\Controllers\dashboard\ResturantController;
-use App\Http\Controllers\dashboard\SettingController;
 use App\Http\Controllers\dashboard\StoreController;
 use App\Http\Controllers\dashboard\UsersController;
 use App\Http\Controllers\dashboard\VideoController;
+use App\Http\Controllers\dashboard\CouponController;
+use App\Http\Controllers\dashboard\ProductController;
+use App\Http\Controllers\dashboard\SettingController;
+use App\Http\Controllers\dashboard\WelcomeController;
+use App\Http\Controllers\dashboard\ShippingController;
+use App\Http\Controllers\dashboard\auth\AuthController;
+use App\Http\Controllers\dashboard\CompaniesController;
+use App\Http\Controllers\dashboard\ResturantController;
+use App\Http\Controllers\dashboard\CategoriesController;
+use App\Http\Controllers\dashboard\NotificationController;
+use App\Http\Controllers\dashboard\auth\ResetPasswordController;
+use App\Http\Controllers\dashboard\PaymentTransactionController;
+use App\Http\Controllers\dashboard\auth\ForgetPasswordController;
 
 Route::group([
     'prefix' => '/dashboard',
@@ -45,7 +49,6 @@ Route::group([
     Route::controller(ResetPasswordController::class)->group(function () {
         Route::get('password/reset/{email}', 'ShowResetForm')->name('password.reset');
         Route::post('password/reset', 'resetpassword')->name('password.reset.post');
-
     });
 
     ############################### Start Admin Auth Route  ###############
@@ -100,8 +103,8 @@ Route::group([
         });
         ################## End Companies Routes #####################
 
-         ################### Start Users Routes #####################
-         Route::group(['middleware' => 'can:users', 'prefix' => 'users', 'as' => 'users.'], function () {
+        ################### Start Users Routes #####################
+        Route::group(['middleware' => 'can:users', 'prefix' => 'users', 'as' => 'users.'], function () {
             Route::controller(UsersController::class)->group(function () {
                 Route::get('index', 'index')->name('index');
                 Route::match(['get', 'post'], 'create', 'create')->name('create');
@@ -111,8 +114,8 @@ Route::group([
         });
         ################## End Users Routes #####################
 
-          ################### Start Stores Routes #####################
-          Route::group(['middleware' => 'can:stores', 'prefix' => 'stores', 'as' => 'stores.'], function () {
+        ################### Start Stores Routes #####################
+        Route::group(['middleware' => 'can:stores', 'prefix' => 'stores', 'as' => 'stores.'], function () {
             Route::controller(StoreController::class)->group(function () {
                 Route::get('index', 'index')->name('index');
                 Route::match(['get', 'post'], 'create', 'create')->name('create');
@@ -122,8 +125,8 @@ Route::group([
         });
         ################## End Stores Routes #####################
 
-          ################### Start Stores Routes #####################
-          Route::group(['middleware' => 'can:payment_transactions', 'prefix' => 'payments', 'as' => 'payments.'], routes: function () {
+        ################### Start Stores Routes #####################
+        Route::group(['middleware' => 'can:payment_transactions', 'prefix' => 'payments', 'as' => 'payments.'], routes: function () {
             Route::controller(PaymentTransactionController::class)->group(function () {
                 Route::get('index', 'index')->name('index');
                 Route::match(['get', 'post'], 'create', 'create')->name('create');
@@ -199,5 +202,34 @@ Route::group([
             });
         });
         ################### End Settings  Routes ###########################
+
+        ################### Start Brands Routes ###########################
+        Route::group(['middleware' => 'can:brands'], function () {
+            Route::resource('brands', BrandController::class);
+        });
+        ################### End Brands Routes #############################
+        ################### Start Coupons Routes ###########################
+        Route::group(['middleware' => 'can:coupons'], function () {
+            Route::resource('coupons', CouponController::class);
+        });
+        ################### End Coupons Routes #############################
+        ################### Start ShippingController #######################
+        Route::group(['middleware' => 'can:shipping', 'prefix' => 'shipping', 'as' => 'shipping.'], function () {
+            Route::controller(ShippingController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::match(['get', 'post'], 'create-country', 'storeCountry')->name('create-country');
+                Route::match(['post', 'get'], 'update-country/{id}', 'updateCountry')->name('update-country');
+                Route::post('destroy-country/{id}', 'destroyCountry')->name('destroy-country');
+                Route::get('index-governorate/{country_id}', 'indexGovernorate')->name('index-governorate');
+                Route::match(['get', 'post'], 'create-governorate/{country_id}', 'storeGovernorate')->name('create-governorate');
+                Route::match(['post', 'get'], 'update-governorate/{id}', 'updateGovernorate')->name('update-governorate');
+                Route::post('destroy-governorate/{id}', 'destroyGovernorate')->name('destroy-governorate');
+                Route::match(['get', 'post'], 'create-city', 'createCity')->name('create-city');
+                Route::match(['post', 'get'], 'update-city/{id}', 'updateCity')->name('update-city');
+                Route::post('destroy-city/{id}', 'destroyCity')->name('destroy-city');
+                Route::get('countries/status/{id}', 'UpdateStatus')->name('update_status');
+            });
+        });
+        ################### End ShippingController #########################
     });
 });

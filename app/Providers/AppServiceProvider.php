@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Support\Facades\Schema; 
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,10 +27,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $setting = MainSetting::first();
-        view()->share([
-            'setting' => $setting
-        ]);
+
+
+        if (Schema::hasTable('main_settings')) {
+            $setting = MainSetting::first();
+            view()->share([
+                'setting' => $setting
+            ]);
+        }
         // View::composer('*', function ($view) {
         //     $route = Route::current();
 
@@ -78,25 +82,28 @@ class AppServiceProvider extends ServiceProvider
 
         ///// Get Settings And Share
 
-        view()->composer('dashboard.*', function () {
-            // if (!auth('admin')->check()) {
-            //     $setting = MainSetting::first();
-            // }
-            $setting = MainSetting::first();
-            // if (Auth::guard('admin')->check()) {
-            //     if (auth('admin')->user()->resturant_id == null) {
-            //         $setting = Setting::where('store_id', null)->first();
-            //     } else {
-            //         $setting = Setting::where('store_id', auth('admin')->user()->resturant_id)->first();
-            //     }
-            // }
+        if (Schema::hasTable('main_settings')) {
+            view()->composer('dashboard.*', function () {
+                // if (!auth('admin')->check()) {
+                //     $setting = MainSetting::first();
+                // }
+                $setting = MainSetting::first();
+                // if (Auth::guard('admin')->check()) {
+                //     if (auth('admin')->user()->resturant_id == null) {
+                //         $setting = Setting::where('store_id', null)->first();
+                //     } else {
+                //         $setting = Setting::where('store_id', auth('admin')->user()->resturant_id)->first();
+                //     }
+                // }
 
-            view()->share([
-                'setting' => $setting
-            ]);
-        });
+                view()->share([
+                    'setting' => $setting
+                ]);
+            });
+        }
 
-         // تشغيل الوظيفة فور تشغيل التطبيق (للاختبار فقط)
+
+        // تشغيل الوظيفة فور تشغيل التطبيق (للاختبار فقط)
         // dispatch(new \App\Jobs\CheckInvoiceDeliveryJob);
         Paginator::useBootstrap();
         foreach (config('permissions') as $config_permission => $value) {
