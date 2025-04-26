@@ -49,11 +49,12 @@
                         <div class="contact-form-box wow fadeInUp" data-wow-delay="0.5s">
                             <!-- Contact Form Start -->
                             <div class="contact-form">
-                                <form id="contactForm" action="#" method="POST" data-toggle="validator">
+                                <form action="{{ route('user.login') }}" method="POST" >
+                                    @csrf
                                     <div class="row">
                                         <div class="form-group col-12 mb-4">
                                             <label for="email"> البريد الالكتروني </label>
-                                            <input type="email" name="email" class="form-control" id="email"
+                                            <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}"
                                                 placeholder="" required />
                                             <div class="help-block with-errors"></div>
                                         </div>

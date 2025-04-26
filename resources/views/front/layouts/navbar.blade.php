@@ -8,13 +8,12 @@
                        <img width="60" src="{{ $setting->getLogo() }}" alt="Logo" />
                    </a>
                    <!-- Logo End -->
-
                    <!-- Main Menu Start -->
                    <div class="collapse navbar-collapse main-menu">
                        <div class="nav-menu-wrapper">
                            <ul class="navbar-nav mr-auto" id="menu">
                                <li class="nav-item">
-                                   <a class="nav-link" href="{{ route('index') }}"> الرئيسية </a>
+                                   <a class="nav-link" href="{{ route('front.index') }}"> الرئيسية </a>
                                </li>
                                <li class="nav-item">
                                    <a class="nav-link" href="#"> من نحن </a>
@@ -29,7 +28,7 @@
                        </div>
                        <!-- Let’s Start Button Start -->
                        <div class="header-btn d-inline-flex">
-                           <a href="{{ route('user.register') }}" class="btn-default"> سجل الان  <i class="bi bi-arrow-up-right"></i> </a>
+                           <a href="{{ route('user.login') }}" class="btn-default"> سجل الان  <i class="bi bi-arrow-up-right"></i> </a>
                        </div>
                        <!-- Let’s Start Button End -->
                    </div>

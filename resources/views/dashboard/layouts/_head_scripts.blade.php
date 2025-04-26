@@ -13,7 +13,7 @@
     <title> @yield('title') - {{ $setting->name }}
     </title>
     <link rel="apple-touch-icon" href="{{ $setting->getLogo() }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ $setting->getLogo() }}">}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ $setting->getLogo() }}">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
         rel="stylesheet">
