@@ -1,15 +1,20 @@
 <?php
 
-use App\Http\Controllers\front\auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SetRestaurant;
+use App\Http\Controllers\front\UserPlans;
 use App\Http\Controllers\front\CartController;
+use App\Http\Controllers\front\PlanController;
 use App\Http\Controllers\front\UserController;
 use App\Http\Controllers\front\FrontController;
 use App\Http\Controllers\front\OrderController;
 use App\Http\Controllers\front\MessageController;
 use App\Http\Controllers\front\CheckoutController;
+use App\Http\Controllers\front\auth\AuthController;
+use App\Http\Controllers\front\StoreSettingController;
+use App\Http\Controllers\front\EcommercePlanController;
 use App\Http\Controllers\front\ResturantFrontController;
+use App\Http\Controllers\front\EcommercePlanSubscribeController;
 //Route::get('/{restaurant:slug}', [ResturantFrontController::class, 'show']);
 
 Route::controller(FrontController::class)->group(function () {
@@ -34,6 +39,26 @@ Route::middleware('auth')->group(function () {
             Route::match(['get', 'post'], 'update_password', 'update_password')->name('update_password');
             Route::post('logout', 'logout')->name('logout');
         });
+        Route::controller(UserPlans::class)->group(function () {
+            Route::get('ecommerce-plans', 'ecommercePlans')->name('ecommerce.mysubscribe');
+        });
+        ########### Start Ecommerce Plans ###########
+        Route::controller(EcommercePlanController::class)->group(function () {
+            Route::get('plans', 'index')->name('ecommerce.plans');
+        });
+        ########### Start Subscribe In Ecommerce Plans ###########
+        Route::controller(EcommercePlanSubscribeController::class)->group(function () {
+            Route::post('subscribe', 'store')->name('ecommerce.subscribe');
+        });
+        ########## End Subscribe In Ecommerce Plans ##########
+        ########### End Ecommerce Plans ###########
+        ########### Start Store Setting ############
+        Route::group(['middleware' => 'can:adminstore', 'prefix' => 'store-setting', 'as' => 'store-setting.'], function () {
+            Route::controller(StoreSettingController::class)->group(function () {
+                Route::get('update', 'update')->name('update');
+            });
+        });
+        ########### End Store Setting  #############
     });
 });
 

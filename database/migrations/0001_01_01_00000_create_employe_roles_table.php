@@ -14,10 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->string('role')->unique();
             $table->json('permission');
+            $table->string('permission_type');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

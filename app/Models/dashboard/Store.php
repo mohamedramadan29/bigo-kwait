@@ -12,35 +12,16 @@ class Store extends Model
         "name",
         "description",
         "slug",
-        "owner_id",
-        "email",
-        "phone",
-        "address",
-        "logo",
-        'status',
-        'banner'
+        "user_id",
+        "status",
     ];
 
     public function User()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function getLogo()
+    public function Setting()
     {
-        return asset('assets/uploads/' . $this->id . '/' . 'logo/' . $this->logo);
-    }
-    public function getBanner()
-    {
-        return asset('assets/uploads/' . $this->id . '/' . 'banners/' . $this->banner);
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-    public function Setting(){
-        return $this->hasOne(Setting::class,'resturant_id');
+        return $this->hasOne(Setting::class, 'store_id');
     }
 }

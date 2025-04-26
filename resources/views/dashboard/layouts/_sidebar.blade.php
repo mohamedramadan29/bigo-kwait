@@ -6,6 +6,20 @@
                       href="{{ route('dashboard.welcome') }}"><i class="la la-home"></i><span class="menu-title"
                           data-i18n="nav.dash.main">الرئيسية</span></a>
               </li>
+              @can('ecommerce-plans')
+                  <li class="nav-item{{ Route::is('dashboard.ecommerce-plans.*') ? 'active' : '' }}"><a href="#"><i
+                              class="bi bi-credit-card"></i><span class="menu-title" data-i18n="nav.users.main">
+                              ادارة خطط التجارة الالكترونية
+                          </span></a>
+                      <ul class="menu-content">
+                          <li class="{{ Route::is('dashboard.ecommerce-plans.index') ? 'active' : '' }}">
+                              <a class="menu-item" href="{{ route('dashboard.ecommerce-plans.index') }}"
+                                  data-i18n="nav.users.user_profile"> جميع خطط التجارة الالكترونية
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+              @endcan
               @can('companies')
                   <li class="nav-item {{ Route::is('dashboard.companies.*') ? 'active' : '' }}"><a href="#"><i
                               class="la la-building"></i><span class="menu-title" data-i18n="nav.role.main"> الشركات
@@ -152,7 +166,7 @@
                       <ul class="menu-content">
                           <li class="{{ Route::is('dashboard.coupons.index') ? 'active' : '' }}">
                               <a class="menu-item" href="{{ route('dashboard.coupons.index') }}"
-                                  data-i18n="nav.users.user_profile">  جميع الكوبونات
+                                  data-i18n="nav.users.user_profile"> جميع الكوبونات
                               </a>
                           </li>
                       </ul>

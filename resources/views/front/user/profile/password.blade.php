@@ -11,9 +11,9 @@
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.welcome') }}">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.account') }}">الرئيسية </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.admins.index') }}"> تعديل كلمة
+                                <li class="breadcrumb-item"><a href="{{ route('user.update_profile') }}"> تعديل كلمة
                                         المرور </a>
                                 </li>
                             </ol>
@@ -38,7 +38,7 @@
                                         <form class="form" method="POST" action="{{ route('user.update_password') }}"
                                             autocomplete="off">
                                             @csrf
-                                           
+
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -71,10 +71,6 @@
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="la la-check-square-o"></i> حفظ
                                                 </button>
-                                                <button type="button" class="mr-1 btn btn-warning">
-                                                    <i class="ft-x"></i> رجوع
-                                                </button>
-
                                             </div>
                                         </form>
                                     </div>

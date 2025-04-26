@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Schema; 
+use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -109,6 +109,11 @@ class AppServiceProvider extends ServiceProvider
         foreach (config('permissions') as $config_permission => $value) {
             Gate::define($config_permission, function ($auth) use ($config_permission) {
                 return $auth->hasAccess($config_permission);
+            });
+        }
+        foreach (config('store_permissions') as $store_config_permission => $value) {
+            Gate::define($store_config_permission, function ($auth) use ($store_config_permission) {
+                return $auth->hasAccess($store_config_permission);
             });
         }
         // $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {

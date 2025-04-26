@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\dashboard\EmployeRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,4 +48,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function Role()
+    {
+        return $this->belongsTo(EmployeRole::class, 'role_id');
+    }
+
+    public function hasAccess($store_config_permission)
+    {
+        $role = $this->Role;
+        // dd($role);
+        if (!$role) {
+            return false;
+        }
+        $permissions = json_decode($role->permission);
+        foreach ($permissions as $permission) {
+            if ($permission == $store_config_permission ?? false) {
+                return true;
+            }
+        }
+    }
 }

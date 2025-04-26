@@ -34,14 +34,16 @@ class UserController extends Controller
             $data = $request->all();
             $rules = [
                 'name' => 'required',
-                'email' => 'required|email|unique:admins,email,' . $user->id,
-                'phone' => 'required',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'phone' => 'required|unique:users,phone,' . $user->id,
+                'type'=>'required',
             ];
             $messages = [
                 'name.required' => 'من فضلك ادخل اسم المستخدم ',
                 'email.required' => 'من فضلك ادخل البريد الالكتروني ',
                 'email.email' => 'من فضلك ادخل بريد الكتروني صحيح ',
                 'phone.required' => 'من فضلك ادخل رقم الهاتف ',
+                'type.required' => 'من فضلك ادخل نوع الحساب ',
             ];
             $validator = Validator::make($data, $rules, $messages);
             if ($validator->fails()) {
@@ -50,6 +52,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phone = $request->phone;
+            $user->type = $request->type;
             $user->save();
             return $this->success_message('تم تحديث البيانات بنجاح');
         }

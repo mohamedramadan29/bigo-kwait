@@ -91,7 +91,7 @@ class AuthController extends Controller
             $user->type = $data['account_type'];
             $user->save();
             Auth::login($user);
-            return $this->success_message('تم تسجيل الحساب الخاص بك بنجاح');
+            return redirect()->route('user.account');
         }
         return view('front.auth.register');
     }

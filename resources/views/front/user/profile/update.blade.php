@@ -11,11 +11,11 @@
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.welcome') }}">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.account') }}">الرئيسية </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.admins.index') }}"> حسابي  </a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.update_profile') }}"> حسابي </a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="#">  تعديل البيانات </a>
+                                <li class="breadcrumb-item active"><a href="#"> تعديل البيانات </a>
                                 </li>
                             </ol>
                         </div>
@@ -30,13 +30,13 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> حسابي  </h4>
+                                    <h4 class="card-title" id="basic-layout-form"> حسابي </h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form" method="POST" action="{{ route('dashboard.update_profile') }}"
+                                        <form class="form" method="POST" action="{{ route('user.update_profile') }}"
                                             autocomplete="off">
                                             @csrf
                                             <div class="form-body">
@@ -65,16 +65,27 @@
                                                                 value="{{ $user->phone }}">
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="phone"> نوع الحساب </label>
+                                                            <select name="type" id="account_type" class="form-control">
+                                                                <option value="">اختر نوع الحساب</option>
+                                                                <option value="indv"
+                                                                    {{ $user->type == 'indv' ? 'selected' : '' }}>فرد
+                                                                </option>
+                                                                <option value="company"
+                                                                    {{ $user->type == 'company' ? 'selected' : '' }}>شركة
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="form-actions">
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="la la-check-square-o"></i> حفظ
                                                 </button>
-                                                <button type="button" class="mr-1 btn btn-warning">
-                                                    <i class="ft-x"></i> رجوع
-                                                </button>
-
                                             </div>
                                         </form>
                                     </div>

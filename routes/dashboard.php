@@ -21,6 +21,7 @@ use App\Http\Controllers\dashboard\NotificationController;
 use App\Http\Controllers\dashboard\auth\ResetPasswordController;
 use App\Http\Controllers\dashboard\PaymentTransactionController;
 use App\Http\Controllers\dashboard\auth\ForgetPasswordController;
+use App\Http\Controllers\dashboard\EcommercePlansController;
 
 Route::group([
     'prefix' => '/dashboard',
@@ -231,5 +232,14 @@ Route::group([
             });
         });
         ################### End ShippingController #########################
+        ################### Start EcommercePlanController #################
+        Route::group(['middleware' => 'can:ecommerce-plans', 'prefix' => 'ecommerce-plans', 'as' => 'ecommerce-plans.'], function () {
+            Route::controller(EcommercePlansController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::match(['get', 'post'], 'store', 'store')->name('store');
+                Route::match(['post', 'get'], 'update/{id}', 'update')->name('update');
+            });
+        });
+        ################## End EcommercePlan Controller ##################
     });
 });

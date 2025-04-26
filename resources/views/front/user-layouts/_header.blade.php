@@ -1,6 +1,6 @@
     <!-- fixed-top-->
     <nav
-        class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light bg-info navbar-shadow">
+        class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light  navbar-shadow" style="background-color: {{ $setting['main_color'] }}">
         <div class="navbar-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
@@ -37,7 +37,13 @@
                                     <span class="user-name text-bold-700"> {{ Auth::user()->name }} </span>
                                 </span>
                                 <span class="avatar avatar-online">
-                                    <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}"><i></i></span>
+                                    @if (!Auth::user()->image)
+                                        <img src="{{ asset('assets/front/user-dashboard/images/avatar.png') }}"
+                                            alt="{{ Auth::user()->name }}"><i></i>
+                                    @else
+                                        <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}"><i></i>
+                                    @endif
+                                </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ route('user.update_profile') }}"><i
