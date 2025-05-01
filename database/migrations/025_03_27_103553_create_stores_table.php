@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->string('slug')->unique();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

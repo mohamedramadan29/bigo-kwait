@@ -39,6 +39,11 @@ class Brand extends Model
         return $this->status == 1 ? 'مفعل' : 'غير مفعل';
 
     }
+    public function Store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
 
     // public function getCreatedAtAttribute($value)
     // {
@@ -49,6 +54,6 @@ class Brand extends Model
 
     public function getImage()
     {
-        return asset('assets/uploads/'. $this->store_id . '/brands/' . $this->logo);
+        return asset('assets/uploads/'. $this->store_id . '/brand_images/' . $this->logo);
     }
 }

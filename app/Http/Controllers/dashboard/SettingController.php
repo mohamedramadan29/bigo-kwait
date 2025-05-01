@@ -108,10 +108,12 @@ class SettingController extends Controller
                 $setting->save();
                 if ($request->hasFile('logo')) {
                     ##### Delete Old Image
-                    $oldLogo = 'assets/uploads/logos/' . $setting['logo'];
-                    //dd($oldLogo);
-                    if (file_exists($oldLogo)) {
-                        @unlink($oldLogo);
+                    if ($setting->logo != null) {
+                        $oldLogo = 'assets/uploads/logos/' . $setting->logo;
+                        //dd($oldLogo);
+                        if (file_exists($oldLogo)) {
+                            @unlink($oldLogo);
+                        }
                     }
                     $filename = $this->saveImage($request->file('logo'), public_path('assets/uploads/logos/'));
                     $setting->logo = $filename;
@@ -120,10 +122,12 @@ class SettingController extends Controller
                 ######### favicon
                 if ($request->hasFile('favicon')) {
                     ##### Delete Old Image
-                    $oldfavicon = 'assets/uploads/favicons/' . $setting['favicon'];
-                    //dd($oldLogo);
-                    if (file_exists($oldfavicon)) {
-                        @unlink($oldfavicon);
+                    if ($setting->favicon != null) {
+                        $oldfavicon = 'assets/uploads/favicons/' . $setting->favicon;
+                        //dd($oldLogo);
+                        if (file_exists($oldfavicon)) {
+                            @unlink($oldfavicon);
+                        }
                     }
                     $faviconname = $this->saveImage($request->file('favicon'), public_path('assets/uploads/favicons/'));
                     $setting->favicon = $faviconname;
@@ -133,7 +137,6 @@ class SettingController extends Controller
             } catch (\Exception $e) {
                 return $this->exception_message($e);
             }
-
         }
         //  dd($setting);
         return view('dashboard.settings.update', compact('setting'));

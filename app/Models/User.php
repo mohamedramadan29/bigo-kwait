@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\dashboard\EmployeRole;
+use App\Models\dashboard\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -67,5 +68,12 @@ class User extends Authenticatable
                 return true;
             }
         }
+
+    }
+
+    ######### get Store
+
+    public function Store(){
+        return $this->hasOne(Store::class,'user_id');
     }
 }

@@ -12,20 +12,20 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')->references('id')->on('stores')->cascadeOnDelete();
+            $table->integer('store_id');
             $table->integer('user_id')->nullable();
-            $table->string('session_id')->nullable();
-            $table->string('name');
-            $table->string('phone');
-            $table->integer('table_number');
-            $table->text('notes')->nullable();
-            $table->string('time_delivery')->nullable();
-            $table->string('payment_method');
-            $table->float('shipping_price')->nullable();
-            $table->string('coupon_code')->nullable();
-            $table->float('coupon_amount')->nullable();
-            $table->string('order_status')->default('لم يبدأ');
-            $table->decimal('grand_total', '8', '2');
+            $table->string('user_name');
+            $table->string('user_email');
+            $table->string('user_phone');
+            $table->decimal('price', 10, 2);
+            $table->decimal('shipping_price', 10, 2)->default(0);
+            $table->decimal('total_price', 10, 2)->default(0);
+            $table->text('note')->nullable();
+            $table->enum('status', ['pending', 'completed', 'cancelled', 'delivered'])->default('pending');
+            $table->string('country');
+            $table->string('government');
+            $table->string('city');
+            $table->string('street');
             $table->timestamps();
         });
     }

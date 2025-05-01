@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             StoreSeeder::class,
             StoreEmployeRoleSeeder::class,
+            AttributeSeeder::class,
         ]);
     }
 }

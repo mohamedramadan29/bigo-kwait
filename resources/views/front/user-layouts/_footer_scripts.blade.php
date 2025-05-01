@@ -34,6 +34,7 @@
   {!! NoCaptcha::renderJs() !!}
   @yield('js')
   @toastifyJs
+  @livewireScripts
   <script>
       $("#single-image").fileinput({
           theme: 'fa5',

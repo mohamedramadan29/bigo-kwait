@@ -17,9 +17,9 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('address');
-            $table->string('logo');
-            $table->string('banner');
-            $table->string('favicon');
+            $table->string('logo')->nullable();
+            $table->string('banner')->nullable();
+            $table->string('favicon')->nullable();
             $table->string('currency')->default('USD')->nullable();
             $table->string('currency_symbol')->default('$')->nullable();
             $table->string('main_color')->default('#000000')->nullable();

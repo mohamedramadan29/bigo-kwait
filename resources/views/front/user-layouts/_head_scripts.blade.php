@@ -60,6 +60,7 @@
         rel="stylesheet" type="text/css" />
     @toastifyCss
     @yield('css')
+    @livewireStyles
 </head>
 
 <body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar" data-open="click"

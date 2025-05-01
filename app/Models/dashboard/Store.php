@@ -24,4 +24,12 @@ class Store extends Model
     {
         return $this->hasOne(Setting::class, 'store_id');
     }
+    public function getLogo()
+    {
+        return asset('assets/uploads/logos/' . $this->Setting->logo);
+    }
+    public function getFavicon()
+    {
+        return asset('assets/uploads/favicons/' . $this->Setting->favicon);
+    }
 }
