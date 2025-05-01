@@ -7,6 +7,13 @@
                             data-i18n="nav.dash.main">
                             الرئيسية </span></a>
                 </li>
+                @if (Auth::user()->store)
+                <li class="" style="margin: 10px">
+                    <a href="#" style="color: #fff" class="btn btn-primary"><i class="bi bi-shop"></i><span class="menu-title"
+                            data-i18n="nav.navbars.main"> مشاهدة المتجر </span></a>
+
+                </li>
+                @endif
                 <li class="nav-item {{ Route::is('user.ecommerce.plans.*') ? 'active' : '' }}">
                     <a href="#"><i class="bi bi-credit-card"></i><span class="menu-title"
                             data-i18n="nav.navbars.main"> الخطط والخدمات </span></a>

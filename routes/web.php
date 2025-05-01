@@ -21,6 +21,7 @@ use App\Http\Controllers\front\store\CategoriesController;
 use App\Http\Controllers\front\store\storeOrderController;
 use App\Http\Controllers\front\store\StoreBannersController;
 use App\Http\Controllers\front\EcommercePlanSubscribeController;
+use App\Http\Controllers\front\store\website\StoreFrontController;
 
 //Route::get('/{restaurant:slug}', [ResturantFrontController::class, 'show']);
 
@@ -130,6 +131,17 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+####################################################################
+######################################################################
+#######################################################################
+############## Start Front Store Website #############################
+Route::prefix('/{store:slug}')->group(function () {
+    Route::controller(StoreFrontController::class)->group(function () {
+        Route::get('/', 'show')->name('store.show');
+        Route::get('products', 'products')->name('store.products');
+    });
+});
+############## End Front Store Website ###############################
 
 Route::view('terms', 'front.terms');
 Route::view('privacy-policy', 'front.privacy-policy');
