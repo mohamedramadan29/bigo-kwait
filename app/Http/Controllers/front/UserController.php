@@ -5,15 +5,18 @@ namespace App\Http\Controllers\front;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\dashboard\Order;
-use App\Http\Controllers\Controller;
 use App\Http\Traits\Message_Trait;
+use App\Http\Traits\Upload_Images;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\dashboard\CompanyProfile;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     use Message_Trait;
+    use Upload_Images;
     public function account()
     {
         return view("front.user.dashboard");
@@ -36,7 +39,7 @@ class UserController extends Controller
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $user->id,
                 'phone' => 'required|unique:users,phone,' . $user->id,
-                'type'=>'required',
+                'type' => 'required',
             ];
             $messages = [
                 'name.required' => 'من فضلك ادخل اسم المستخدم ',
@@ -92,5 +95,65 @@ class UserController extends Controller
         }
 
         return view('front.user.profile.password', compact('user'));
+    }
+    ################# Confirm Data ###################
+    public function confirm_data(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            $rules = [
+                'name' => 'required',
+                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+                'commercial_license' => 'required|mimes:pdf,doc,docx,jpeg,png,jpg,gif,svg,webp',
+                'signature_approval' => 'required|mimes:pdf,doc,docx,jpeg,png,jpg,gif,svg,webp',
+                'identity_card' => 'required|mimes:pdf,doc,docx,jpeg,png,jpg,gif,svg,webp',
+            ];
+            $messages = [
+                'name.required' => 'من فضلك ادخل اسم المستخدم ',
+                'logo.required' => 'من فضلك ادخل لوجو الشركة ',
+                'commercial_license.required' => 'من فضلك ادخل الرخصة التجارية ',
+                'signature_approval.required' => 'من فضلك ادخل اعتماد التوقيع ',
+                'identity_card.required' => 'من فضلك ادخل البطاقة الشخصية ',
+                'logo.image' => 'من فضلك ادخل لوجو الشركة ',
+                'logo.mimes' => ' لوجو الشركة يجب ان يكون من نوع jpeg,png,jpg,gif,svg,webp ',
+                'commercial_license.mimes' => ' الرخصة التجارية يجب ان يكون من نوع pdf,doc,docx,jpeg,png,jpg,gif,svg,webp ',
+                'signature_approval.mimes' => ' اعتماد التوقيع يجب ان يكون من نوع pdf,doc,docx,jpeg,png,jpg,gif,svg,webp ',
+                'identity_card.mimes' => ' البطاقة الشخصية يجب ان يكون من نوع pdf,doc,docx,jpeg,png,jpg,gif,svg,webp ',
+            ];
+            $validator = Validator::make($data, $rules, $messages);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            if ($request->hasFile('logo')) {
+                ########## Delete Old Logo
+                $file_logo = $this->saveImage($request->logo, public_path('assets/uploads/companies/confirm_data/' . $user->id . '/logo'));
+            }
+            if ($request->hasFile('commercial_license')) {
+                $file_commercial_license = $this->saveImage($request->commercial_license, public_path('assets/uploads/companies/confirm_data/' . $user->id . '/commercial_license'));
+            }
+            if ($request->hasFile('signature_approval')) {
+                $file_signature_approval = $this->saveImage($request->signature_approval, public_path('assets/uploads/companies/confirm_data/' . $user->id . '/signature_approval'));
+            }
+            if ($request->hasFile('identity_card')) {
+                $file_identity_card = $this->saveImage($request->identity_card, public_path('assets/uploads/companies/confirm_data/' . $user->id . '/identity_card'));
+            }
+            $company = $user->CompanyInfo;
+            if (!$company) {
+                $company = new CompanyProfile();
+                $company->user_id = $user->id;
+            }
+            $company->name = $request->name;
+            $company->logo = $file_logo;
+            $company->commercial_license = $file_commercial_license;
+            $company->signature_approval = $file_signature_approval;
+            $company->identity_card = $file_identity_card;
+            $company->save();
+            return $this->success_message(' تم رفع البيانات الخاصة بك بنجاح من فضلك انتظر التفعيل من الادارة  ');
+        }
+        $user = User::with('CompanyInfo')->find(Auth::user()->id);
+        // dd($user);
+
+        return view('front.user.profile.confirm_data', compact('user'));
     }
 }

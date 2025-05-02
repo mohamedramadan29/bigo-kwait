@@ -4,12 +4,13 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Models\dashboard\EmployeRole;
 use App\Models\dashboard\Store;
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\dashboard\EmployeRole;
+use App\Models\dashboard\CompanyProfile;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -75,5 +76,11 @@ class User extends Authenticatable
 
     public function Store(){
         return $this->hasOne(Store::class,'user_id');
+    }
+
+    ######## Get The Company Data
+
+    public function CompanyInfo(){
+        return $this->hasOne(CompanyProfile::class,'user_id');
     }
 }

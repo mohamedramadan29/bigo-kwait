@@ -63,7 +63,7 @@
                                         </ul>
 
                                         <div class="card-body text-center">
-                                            <form action="{{ route('user.ecommerce.subscribe') }}" method="post">
+                                            <form action="{{ route('user.ecommerce.subscribe.paypal.initiate') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="ecommerce_plan_id" value="{{ $plan->id }}">
                                                 <button type="submit" class="btn btn-primary">اشترك الآن</button>

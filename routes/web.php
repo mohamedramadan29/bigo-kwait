@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
             Route::get('account', 'account')->name('account');
             Route::match(['get', 'post'], 'update_profile', 'update_profile')->name('update_profile');
             Route::match(['get', 'post'], 'update_password', 'update_password')->name('update_password');
+            Route::match(['get', 'post'], 'confirm_data', 'confirm_data')->name('confirm_data');
             Route::post('logout', 'logout')->name('logout');
         });
         Route::controller(UserPlans::class)->group(function () {
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
         ########### Start Subscribe In Ecommerce Plans ###########
         Route::controller(EcommercePlanSubscribeController::class)->group(function () {
             Route::post('subscribe', 'store')->name('ecommerce.subscribe');
+            Route::post('/subscribe/paypal', 'initiatePayment')->name('ecommerce.subscribe.paypal.initiate');
+            Route::get('/paypal/success', 'paypalSuccess')->name('ecommerce.subscribe.paypal.success');
+            Route::get('/paypal/cancel', 'paypalCancel')->name('ecommerce.subscribe.paypal.cancel');
         });
         ########## End Subscribe In Ecommerce Plans ##########
         ########### End Ecommerce Plans ###########

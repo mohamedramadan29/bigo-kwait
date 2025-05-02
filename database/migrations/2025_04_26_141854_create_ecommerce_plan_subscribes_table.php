@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('ecommerce_plan_id')->constrained('ecommerce_plans')->cascadeOnDelete();
-            $table->integer('payment_id')->nullable();
+            $table->string('payment_id')->nullable();
             $table->double('price', 8, 2)->default(0);
             $table->string('duration');
             $table->string('start_date');

@@ -153,6 +153,11 @@
                                     data-i18n="nav.users.user_profile"> تعديل البيانات
                                 </a>
                             </li>
+                            <li class="{{ Route::is('user.confirm_data') ? 'active' : '' }}">
+                                <a class="menu-item" href="{{ route('user.confirm_data') }}"
+                                    data-i18n="nav.users.user_profile"> تاكيد بيانات الشركة
+                                </a>
+                            </li>
                             <li class="{{ Route::is('user.update_password') ? 'active' : '' }}">
                                 <a class="menu-item" href="{{ route('user.update_password') }}"
                                     data-i18n="nav.users.user_profile"> تعديل كلمة المرور
