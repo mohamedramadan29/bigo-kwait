@@ -75,8 +75,7 @@
                                     <a href="#"><img src="{{ asset('assets/front') }}/images/icon-phone.svg"
                                             alt="" /></a>
                                 </div>
-                                <p>(+0977) 123 456 789</p>
-                                <p>(+0966) 123 456 789</p>
+                                <p>{{ $setting->phone }}</p>
                             </div>
                             <div class="contact-image">
                                 <figure class="image-anime">
@@ -96,8 +95,7 @@
                                     <a href="#"><img src="{{ asset('assets/front') }}/images/icon-mail.svg"
                                             alt="" /></a>
                                 </div>
-                                <p>info@domainname.com</p>
-                                <p>info@domainname.com</p>
+                                <p>{{ $setting->email }}</p>
                             </div>
                             <div class="contact-image">
                                 <figure class="image-anime">
@@ -132,39 +130,39 @@
                                 <ul class="wow fadeInUp" data-wow-delay="0.75s">
                                     @if ($setting->facebook != null)
                                         <li>
-                                            <a href="#"><i class="bi bi-facebook"></i></a>
+                                            <a href="{{ $setting->facebook }}"><i class="bi bi-facebook"></i></a>
                                         </li>
                                     @endif
                                     @if ($setting->twitter != null)
                                         <li>
-                                            <a href="#"><i class="bi bi-twitter-x"></i></a>
+                                            <a href="{{ $setting->twitter }}"><i class="bi bi-twitter-x"></i></a>
                                         </li>
                                     @endif
 
                                     @if ($setting->instagram != null)
                                         <li>
-                                            <a href="#"><i class="bi bi-instagram"></i></a>
+                                            <a href="{{ $setting->instagram }}"><i class="bi bi-instagram"></i></a>
                                         </li>
                                     @endif
                                     @if ($setting->youtube != null)
                                         <li>
-                                            <a href="#"><i class="bi bi-youtube"></i></a>
+                                            <a href="{{ $setting->youtube }}"><i class="bi bi-youtube"></i></a>
                                         </li>
                                     @endif
                                     @if ($setting->whatsapp != null)
                                         <li>
-                                            <a href="#"><i class="bi bi-whatsapp"></i></a>
+                                            <a href="{{ $setting->whatsapp }}"><i class="bi bi-whatsapp"></i></a>
                                         </li>
                                     @endif
 
                                     @if ($setting->snapchat != null)
                                         <li>
-                                            <a href="#"><i class="bi bi-snapchat"></i></a>
+                                            <a href="{{ $setting->snapchat }}"><i class="bi bi-snapchat"></i></a>
                                         </li>
                                     @endif
                                     @if ($setting->tiktok != null)
                                         <li>
-                                            <a href="#"><i class="bi bi-tiktok"></i></a>
+                                            <a href="{{ $setting->tiktok }}"><i class="bi bi-tiktok"></i></a>
                                         </li>
                                     @endif
                                 </ul>
@@ -232,8 +230,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d56481.31329163797!2d-82.30112043759952!3d27.776444959332093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnited%20States%20solar!5e0!3m2!1sen!2sin!4v1706008331370!5m2!1sen!2sin"
-                            width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3484.3443932826685!2d48.123232684905396!3d29.154521982214764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDA5JzE2LjMiTiA0OMKwMDcnMTUuOCJF!5e0!3m2!1sar!2seg!4v1746262317181!5m2!1sar!2seg"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>

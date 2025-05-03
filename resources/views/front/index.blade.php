@@ -24,7 +24,7 @@
                             <!-- Section Title End -->
                             <!-- Hero Footer Start -->
                             <div class="hero-footer">
-                                <a href="#" class="btn-default wow fadeInUp" data-wow-delay="0.75s"> سجل معنا الان
+                                <a href="{{ route('user.login') }}" class="btn-default wow fadeInUp" data-wow-delay="0.75s"> سجل معنا الان
                                 </a>
                             </div>
                             <!-- Hero Footer End -->
@@ -38,7 +38,7 @@
     <!-- Hero Section End -->
 
     <!-- About Section Start -->
-    <div class="about-us">
+    <div class="about-us" id="about-us">
         <div class="container">
             <div class="row section-row align-items-center">
                 <div class="col-lg-12">
@@ -72,7 +72,7 @@
                             <li> <i class="bi bi-arrow-left-circle-fill"></i> تسويق رقمي احترافي </li>
                         </ul>
 
-                        <a href="#" class="btn-default wow fadeInUp" data-wow-delay="1.25s"> تواصل معنا الان </a>
+                        <a href="{{ route('contact') }}" class="btn-default wow fadeInUp" data-wow-delay="1.25s"> تواصل معنا الان </a>
                     </div>
                     <!-- About Us Content End -->
                 </div>
@@ -175,7 +175,7 @@
     <!-- Why Choose Us Section End -->
 
     <!-- Our Services Section Start -->
-    <div class="our-services">
+    <div class="our-services" id="services">
         <div class="container">
             <div class="row section-row align-items-center">
                 <div class="col-lg-7 col-12">
@@ -364,7 +364,7 @@
                                         </h2>
                                     </div>
                                     <!-- Section Title End -->
- 
+
                                 </div>
                             </div>
                         </div>

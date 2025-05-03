@@ -16,10 +16,10 @@
                                    <a class="nav-link" href="{{ route('front.index') }}"> الرئيسية </a>
                                </li>
                                <li class="nav-item">
-                                   <a class="nav-link" href="#"> من نحن </a>
+                                   <a class="nav-link" href="{{ url('/') }}#about-us"> من نحن </a>
                                </li>
                                <li class="nav-item">
-                                   <a class="nav-link" href="#"> خدماتنا </a>
+                                   <a class="nav-link" href="{{ url('/') }}#services"> خدماتنا </a>
                                </li>
                                <li class="nav-item">
                                    <a class="nav-link" href="{{ url('/contact') }}">تواصل معنا </a>
