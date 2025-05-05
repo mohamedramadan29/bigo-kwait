@@ -57,6 +57,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th> المتجر </th>
                                                     <th> الكود </th>
                                                     <th> النسبة المخفضة </th>
                                                     <th> البدء </th>
@@ -72,6 +73,7 @@
                                                 @foreach ($coupons as $coupon)
                                                     <tr>
                                                         <th> {{ $loop->iteration }} </th>
+                                                        <th> {{ $coupon->store->name ?? 'لا يوجد' }} </th>
                                                         <th> {{ $coupon->code }} </th>
                                                         <th> {{ $coupon->discount_percentage }} </th>
                                                         <th> {{ $coupon->start_date }} </th>

@@ -54,6 +54,6 @@ class Brand extends Model
 
     public function getImage()
     {
-        return asset('assets/uploads/'. $this->store_id . '/brand_images/' . $this->logo);
+        return asset('assets/uploads/'. $this->store_id . '/brands/' . $this->logo);
     }
 }

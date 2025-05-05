@@ -17,6 +17,16 @@
                     @csrf
                     <input type="hidden" name="id" id="coupon_id" value="{{ $coupon->id }}">
                     <div class="form-group">
+                        <label for=""> المتجر  </label>
+                        <select name="store_id" id="" class="form-control">
+                            <option value=""> -- حدد المتجر -- </option>
+                            @foreach ($stores as $store)
+                                <option value="{{ $store->id }}" @selected(old('store_id', $coupon->store_id) == $store->id)>{{ $store->name }}</option>
+                            @endforeach
+                        </select>
+                        <strong class="text-danger" id="store_id_error"></strong>
+                    </div>
+                    <div class="form-group">
                         <label for=""> الكود </label>
                         <input type="text" class="form-control" name="code" value="{{ old('code', $coupon->code) }}" id="coupon_code">
                         <strong class="text-danger" id="code_error"></strong>

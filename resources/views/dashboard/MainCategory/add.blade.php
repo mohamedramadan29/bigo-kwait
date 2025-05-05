@@ -57,26 +57,21 @@
                                             <div class="form-body">
                                                 <div class="col-xl-12 col-lg-12 ">
                                                     <div class="row">
-                                                        @if (Auth::guard('admin')->user()->type == 'superadmin')
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="name" class="form-label"> حدد المطعم
-                                                                    </label>
-                                                                    <select name="resturant_id" id=""
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label for="name" class="form-label"> حدد المتجر
+                                                                </label>
+                                                                <select name="store_id" id=""
                                                                         class="form-control">
                                                                         <option value="" selected disabled> -- حدد
-                                                                            المطعم -- </option>
-                                                                        @foreach ($resturants as $rest)
-                                                                            <option value="{{ $rest['id'] }}">
-                                                                                {{ $rest['name'] }}</option>
+                                                                            المتجر -- </option>
+                                                                        @foreach ($stores as $store)
+                                                                            <option value="{{ $store['id'] }}">
+                                                                                {{ $store['name'] }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                        @else
-                                                            <input type="hidden" name="resturant_id"
-                                                                value="{{ Auth::guard('admin')->user()->resturant_id }}">
-                                                        @endif
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label for="name" class="form-label"> عنوان

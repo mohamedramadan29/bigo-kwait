@@ -42,9 +42,7 @@
                                                 <tr>
                                                     <th> # </th>
                                                     <th> اسم القسم</th>
-                                                    @if (Auth::guard('admin')->user()->role_id == 1)
-                                                        <th> المطعم </th>
-                                                    @endif
+                                                    <th> المتجر </th>
                                                     <th> الحالة</th>
                                                     <th> الصورة</th>
                                                     <th> العمليات</th>
@@ -58,11 +56,9 @@
                                                             {{ $loop->iteration }}
                                                         </td>
                                                         <td> {{ $category['name'] }} </td>
-                                                        @if (Auth::guard('admin')->user()->role_id == 1)
-                                                            <td>
-                                                                {{ $category['Resturant']['name'] }}
-                                                            </td>
-                                                        @endif
+                                                        <td>
+                                                            {{ $category['Store']['name'] }}
+                                                        </td>
                                                         <td>
                                                             @if ($category['status'] == 1)
                                                                 <span class="badge bg-success"> مفعل </span>

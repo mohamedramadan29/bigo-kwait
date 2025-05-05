@@ -41,33 +41,23 @@
                                                     <th> وصف المتجر </th>
                                                     <th> مالك المتجر  </th>
                                                     <th> الحالة </th>
-                                                    <th> العمليات </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @forelse ($stores as $store)
                                                     <tr>
                                                         <th scope="row">{{ $loop->iteration }}</th>
-                                                        <td> {{ $store->name }} </td>
+                                                        <td>  {{ $store->name }} </td>
                                                         <td>
                                                             {{ $store->description }}
                                                         </td>
                                                         <td>
-                                                            {{ $store->user_id }}
+                                                          <a href="{{ route('dashboard.companies.update', $store->user->id) }}"> {{ $store->user->name }} </a>
                                                         </td>
                                                         <td>
                                                             {{ $store->status == 1 ? 'مفعل' : 'غير مفعل' }}
                                                         </td>
-                                                        <td>
-                                                            <a class="btn btn-info btn-sm"
-                                                                href="{{ route('dashboard.compa$users.update', $store->id) }}"><i
-                                                                    class="la la-edit"></i> تعديل </a>
-                                                            <button type="button" class="btn btn-danger btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#delete_store_{{ $store->id }}">
-                                                                حذف <i class="la la-trash"></i>
-                                                            </button>
-                                                        </td>
+
                                                     </tr>
                                                     @include('dashboard.stores._delete')
                                                 @empty

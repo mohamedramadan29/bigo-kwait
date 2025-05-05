@@ -23,6 +23,7 @@ use App\Http\Controllers\front\store\storeOrderController;
 use App\Http\Controllers\front\store\StoreBannersController;
 use App\Http\Controllers\front\EcommercePlanSubscribeController;
 use App\Http\Controllers\front\store\website\StoreFrontController;
+use App\Http\Controllers\front\SupportTicketsController;
 
 //Route::get('/{restaurant:slug}', [ResturantFrontController::class, 'show']);
 
@@ -133,6 +134,14 @@ Route::middleware('auth')->group(function () {
             });
         });
         ############ End Slider Controller ##########
+        ############# Start Support Ticket Controller #############
+        Route::controller(SupportTicketsController::class)->group(function () {
+            Route::get('support/tickets', 'index')->name('support.tickets');
+            Route::post('support/new-ticket', 'newTicket')->name('support.new-ticket');
+            Route::get('/ticket/show/{id}','showTicket')->name('support.ticket.show');
+            Route::match(['post','get'],'ticket/sendmessage/{id}','sendMessage')->name('ticket.sendmessage');
+        });
+        ############# End Support Ticket Controller ###############
     });
 });
 

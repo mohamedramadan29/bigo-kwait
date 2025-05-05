@@ -8,6 +8,7 @@ use App\Http\Traits\Message_Trait;
 use App\Http\Traits\Slug_Trait;
 use App\Http\Traits\Upload_Images;
 use App\Models\dashboard\Brand;
+use App\Models\dashboard\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,7 +23,8 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::latest()->get();
-        return view('dashboard.brands.index', compact('brands'));
+        $stores = Store::where('status', 1)->get();
+        return view('dashboard.brands.index', compact('brands','stores'));
     }
 
     /**
@@ -43,7 +45,6 @@ class BrandController extends Controller
             $filename = $this->saveImage($request->logo, public_path('assets/uploads/' . $data['store_id'] . '/brands'));
         }
         $brand = new Brand();
-
         $brand->store_id = $data['store_id'];
         $brand->name = $data['name'];
         $brand->status = $data['status'];
@@ -66,7 +67,8 @@ class BrandController extends Controller
     public function edit(string $id)
     {
         $brand = Brand::findOrFail($id);
-        return view('dashboard.brands.edit', compact('brand'));
+        $stores = Store::where('status', 1)->get();
+        return view('dashboard.brands.edit', compact('brand','stores'));
     }
 
     /**

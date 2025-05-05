@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Traits\Message_Trait;
 use App\Http\Controllers\Controller;
+use App\Http\Traits\Slug_Trait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     use Message_Trait;
+    use Slug_Trait;
 
     public function login(Request $request)
     {
@@ -80,12 +82,17 @@ class AuthController extends Controller
                 'g-recaptcha-response.required' => ' من فضلك اكد انك لست روبوت',
                 'g-recaptcha-response.captcha' => 'من فضلك اكد انك لست روبوت غير صحيح'
             ];
+            $username = $this->CustomeSlug($data['name']);
             $validator = Validator::make($data, $rules, $messages);
             if ($validator->fails()) {
                 return Redirect::back()->withInput()->withErrors($validator);
             }
+            if(User::where('username',$username)->exists()){
+                $username = $this->CustomeSlug($data['name'].rand(1,100));
+            }
             $user = new User();
             $user->name = $data['name'];
+            $user->username = $username;
             $user->email = $data['email'];
             $user->password = Hash::make($data['password']);
             $user->type = $data['account_type'];

@@ -18,10 +18,12 @@ use App\Http\Controllers\dashboard\CompaniesController;
 use App\Http\Controllers\dashboard\ResturantController;
 use App\Http\Controllers\dashboard\CategoriesController;
 use App\Http\Controllers\dashboard\NotificationController;
+use App\Http\Controllers\dashboard\EcommercePlansController;
 use App\Http\Controllers\dashboard\auth\ResetPasswordController;
+use App\Http\Controllers\dashboard\MainContactMessageController;
 use App\Http\Controllers\dashboard\PaymentTransactionController;
 use App\Http\Controllers\dashboard\auth\ForgetPasswordController;
-use App\Http\Controllers\dashboard\EcommercePlansController;
+use App\Http\Controllers\dashboard\SupportTicketsController;
 
 Route::group([
     'prefix' => '/dashboard',
@@ -137,19 +139,8 @@ Route::group([
         });
         ################## End Stores Routes #####################
 
-        ##################### Start Resturant Routes #########################
-        Route::group(['middleware' => 'can:superadmin', 'prefix' => 'resturants', 'as' => 'resturants.'], function () {
-            Route::controller(ResturantController::class)->group(function () {
-                Route::get('index', 'index')->name('index');
-                Route::match(['get', 'post'], 'create', 'create')->name('create');
-                Route::match(['post', 'get'], 'update/{id}', 'update')->name('update');
-                Route::post('destroy/{id}', 'destroy')->name('destroy');
-            });
-        });
-        ################### End Resturant Routes ###########################
 
-
-        ##################### Start Resturant Routes #########################
+        ##################### Start  Categories  Routes #########################
         Route::group(['middleware' => 'can:categories', 'prefix' => 'categories', 'as' => 'categories.'], function () {
             Route::controller(CategoriesController::class)->group(function () {
                 Route::get('index', 'index')->name('index');
@@ -158,7 +149,7 @@ Route::group([
                 Route::post('destroy/{id}', 'destroy')->name('destroy');
             });
         });
-        ################### End Resturant Routes ###########################
+        ################### End Categories  Routes ###########################
 
 
         ##################### Start Product  Routes #########################
@@ -241,5 +232,24 @@ Route::group([
             });
         });
         ################## End EcommercePlan Controller ##################
+        ################## Start Public Messages Controller #############
+        Route::group(['middleware' => 'can:contacts', 'prefix' => 'public-messages', 'as' => 'public-messages.'], function () {
+            Route::controller(MainContactMessageController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::match(['get', 'post'], 'show/{id}', 'show')->name('show');
+                Route::match(['post', 'get'], 'delete/{id}', 'delete')->name('delete');
+            });
+        });
+        ################## End Public Messages Controller ###############
+        ################## Start Support Tickets Controller #############
+        Route::group(['middleware' => 'can:contacts', 'prefix' => 'tickets', 'as' => 'tickets.'], function () {
+            Route::controller(SupportTicketsController::class)->group(function () {
+                Route::get('index', 'index')->name('index');
+                Route::post('new-ticket', 'newTicket')->name('new-ticket');
+                Route::get('show/{id}', 'showTicket')->name('show');
+          Route::match(['post', 'get'], 'sendmessage/{id}', 'sendMessage')->name('sendmessage');
+            });
+        });
+        ################## End Support Tickets Controller #############
     });
 });

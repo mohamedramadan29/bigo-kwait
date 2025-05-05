@@ -16,7 +16,12 @@
                     @csrf
                     <div class="form-group">
                         <label for=""> المتجر  </label>
-                        <input type="text" class="form-control" name="store_id" value="1">
+                        <select name="store_id" id="" class="form-control">
+                            <option value=""> -- حدد المتجر -- </option>
+                            @foreach ($stores as $store)
+                                <option value="{{ $store->id }}"> {{ $store->name }} </option>
+                            @endforeach
+                        </select>
                         <strong class="text-danger" id="store_id_error"></strong>
                     </div>
                     <div class="form-group">

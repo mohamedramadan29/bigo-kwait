@@ -12,8 +12,12 @@
                     @csrf
                     <div class="form-group">
                         <label for=""> حدد المتجر  </label>
-                        <input type="text" class="form-control" name="store_id" required
-                            value="1">
+                        <select name="store_id" id="" class="form-control" required>
+                            <option value=""> -- حدد المتجر -- </option>
+                            @foreach ($stores as $store)
+                                <option value="{{ $store->id }}" @selected(old('store_id') == $store->id)>{{ $store->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">

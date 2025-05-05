@@ -1,4 +1,3 @@
-orders
 @extends('dashboard.layouts.app')
 @section('title', ' ادارة الطلبات ')
 @section('content')

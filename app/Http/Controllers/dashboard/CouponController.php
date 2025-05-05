@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CouponRequest;
 use App\Http\Traits\Message_Trait;
 use App\Models\dashboard\Coupon;
+use App\Models\dashboard\Store;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -15,7 +16,8 @@ class CouponController extends Controller
     public function index()
     {
         $coupons = Coupon::latest()->get();
-        return view('dashboard.coupons.index', compact('coupons'));
+        $stores = Store::with('User')->where('status',1)->get();
+        return view('dashboard.coupons.index', compact('coupons','stores'));
     }
 
     /**
@@ -40,9 +42,9 @@ class CouponController extends Controller
             'start_date' => $data['start_date'],
             'end_date' => $data['end_date'],
             'limit' => $data['limit'],
-           // 'time_used' => $data['time_used'],
             'is_active' => $data['is_active'],
         ]);
+        return $this->success_message('تم اضافة الكوبون بنجاح');
     }
 
     /**
@@ -62,7 +64,8 @@ class CouponController extends Controller
         if (!$coupon) {
             abort(404);
         }
-        return view('dashboard.coupons.edit', compact('coupon'));
+        $stores = Store::where('status',1)->get();
+        return view('dashboard.coupons.edit', compact('coupon','stores'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use Illuminate\Http\Request;
 use App\Models\dashboard\Country;
+use App\Models\dashboard\Store;
 use App\Http\Traits\Message_Trait;
 use App\Http\Controllers\Controller;
 use App\Models\dashboard\Governrate;
@@ -16,7 +17,8 @@ class ShippingController extends Controller
     public function index()
     {
         $countries = Country::with('governorates')->get();
-        return view('dashboard.world.countries', compact('countries'));
+        $stores = Store::where('status', 1)->get();
+        return view('dashboard.world.countries', compact('countries','stores'));
     }
 
     public function storeCountry(Request $request)

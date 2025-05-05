@@ -33,18 +33,6 @@
                       </ul>
                   </li>
               @endcan
-              @can('users')
-                  {{-- <li class="nav-item {{ Route::is('dashboard.users.*') ? 'active' : '' }}"><a href="#"><i
-                              class="la la-users"></i><span class="menu-title" data-i18n="nav.role.main"> الافراد
-                          </span></a>
-                      <ul class="menu-content">
-                          <li class="{{ Route::is('dashboard.users.index') ? 'active' : '' }}">
-                              <a class="menu-item" href="{{ route('dashboard.users.index') }}" data-i18n="nav.role.index">
-                                  جميع الافراد </a>
-                          </li>
-                      </ul>
-                  </li> --}}
-              @endcan
               @can('superadmin')
                   <li class="nav-item{{ Route::is('dashboard.admins.*') ? 'active' : '' }}"><a href="#"><i
                               class="bi bi-person-lines-fill"></i><span class="menu-title" data-i18n="nav.users.main">
@@ -121,14 +109,10 @@
                               </a>
                           </li>
 
-                          <li class="{{ Route::is('dashboard.brands.create') ? 'active' : '' }}">
-                              <a class="menu-item" href="{{ route('dashboard.brands.create') }}"
-                                  data-i18n="nav.users.user_cards"> اضافة علامة تجارية </a>
-                          </li>
                       </ul>
                   </li>
               @endcan
-              @can('categories')
+              {{-- @can('categories')
                   <li class="nav-item{{ Route::is('dashboard.products.*') ? 'active' : '' }}"><a href="#"><i
                               class="la la-list"></i><span class="menu-title" data-i18n="nav.users.main"> ادارة المنتجات
                           </span></a>
@@ -145,7 +129,7 @@
                           </li>
                       </ul>
                   </li>
-              @endcan
+              @endcan --}}
               @can('orders')
                   <li class="nav-item{{ Route::is('dashboard.orders.*') ? 'active' : '' }}"><a href="#"><i
                               class="la la-list"></i><span class="menu-title" data-i18n="nav.users.main"> ادارة الطلبات
@@ -203,6 +187,38 @@
                       </ul>
                   </li>
               @endcan
+
+              @can('contacts')
+                  <li class="nav-item {{ Route::is('dashboard.public-messages.*') ? 'active' : '' }}"><a
+                          href="#"><i class="la la-envelope"></i><span class="menu-title"
+                              data-i18n="nav.role.main"> الرسائل العامة
+                          </span></a>
+                      <ul class="menu-content">
+                          <li class="{{ Route::is('dashboard.public-messages.index') ? 'active' : '' }}">
+                              <a class="menu-item" href="{{ route('dashboard.public-messages.index') }}"
+                                  data-i18n="nav.role.index">
+                                  الرسائل العامة </a>
+                          </li>
+
+                      </ul>
+                  </li>
+              @endcan
+
+              @can('contacts')
+              <li class="nav-item {{ Route::is('dashboard.tickets.*') ? 'active' : '' }}"><a
+                      href="#"><i class="la la-envelope"></i><span class="menu-title"
+                          data-i18n="nav.role.main"> تذاكر الدعم الفني
+                      </span></a>
+                  <ul class="menu-content">
+                      <li class="{{ Route::is('dashboard.tickets.index') ? 'active' : '' }}">
+                          <a class="menu-item" href="{{ route('dashboard.tickets.index') }}"
+                              data-i18n="nav.role.index">
+                            تذاكر الدعم الفني   </a>
+                      </li>
+
+                  </ul>
+              </li>
+          @endcan
 
               <li class="nav-item {{ Route::is('dashboard.update_profile.*') ? 'active' : '' }}"><a href="#"><i
                           class="la la-user"></i><span class="menu-title" data-i18n="nav.users.main"> ادارة

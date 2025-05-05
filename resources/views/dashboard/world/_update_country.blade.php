@@ -15,7 +15,12 @@
                     @csrf
                     <div>
                         <label> حدد المتجر </label>
-                        <input type="text" class="form-control" name="store_id" value="1">
+                        <select class="form-control" name="store_id">
+                            <option value="" selected disabled> -- حدد المتجر -- </option>
+                            @foreach ($stores as $store)
+                                <option @selected(old('store_id') == $store->id || $country->store_id == $store->id) value="{{ $store->id }}">{{ $store->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div>
                         <label> اسم الدولة </label>

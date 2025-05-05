@@ -36,4 +36,8 @@ class Coupon extends Model
     {
         return $this->is_active == 1 ? 'مفعل' : 'غير مفعل';
     }
+
+    public function Store(){
+        return $this->belongsTo(Store::class,'store_id');
+    }
 }

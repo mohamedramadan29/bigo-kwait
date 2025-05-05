@@ -56,9 +56,12 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="store_id"> المتجر  </label>
-                                                            <input type="text" id="store_id" class="form-control"
-                                                                placeholder="  " name="store_id"
-                                                                value="{{ old('store_id', $brand->store_id) }}">
+                                                            <select name="store_id" id="" class="form-control" required>
+                                                                <option value=""> -- حدد المتجر -- </option>
+                                                                @foreach ($stores as $store)
+                                                                    <option value="{{ $store->id }}" @selected(old('store_id') == $store->id || $brand->store_id == $store->id)>{{ $store->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>

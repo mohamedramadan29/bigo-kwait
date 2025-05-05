@@ -176,47 +176,68 @@
                         <div class="contact-form-box wow fadeInUp" data-wow-delay="0.5s">
                             <!-- Contact Form Start -->
                             <div class="contact-form">
-                                <form id="contactForm" action="#" method="POST" data-toggle="validator">
+                                <form action="{{ route('contact.store') }}" method="POST" id="SendcontactForm">
+                                    @csrf
                                     <div class="row">
                                         <div class="form-group col-12 mb-4">
-                                            <input type="text" name="name" class="form-control" id="name"
+                                            <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}"
                                                 placeholder="الاسم" required />
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group col-12 mb-4">
-                                            <input type="text" name="phone" class="form-control" id="phone"
+                                            <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}"
                                                 placeholder="رقم الهاتف" required />
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group col-12 mb-4">
-                                            <input type="email" name="email" class="form-control" id="email"
+                                            <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}"
                                                 placeholder="البريد الالكتروني" required />
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group col-12 mb-4">
-                                            <input type="text" name="subject" class="form-control" id="subject"
+                                            <input type="text" name="subject" class="form-control" id="subject" value="{{ old('subject') }}"
                                                 placeholder="عنوان الرسالة" required />
                                             <div class="help-block with-errors"></div>
                                         </div>
 
                                         <div class="form-group col-12 mb-4">
-                                            <textarea name="msg" class="form-control" id="msg" rows="7" placeholder="رسالتك" required></textarea>
+                                            <textarea name="msg" class="form-control" id="msg" rows="7" placeholder="رسالتك" required>{{ old('msg') }}</textarea>
                                             <div class="help-block with-errors"></div>
                                         </div>
-
+                                        <div class="form-group col-12 mb-4 capatcha_section">
+                                            {!! NoCaptcha::display() !!}
+                                            @if ($errors->has('g-recaptcha-response'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn-default">
+                                            <button type="submit" class="btn-default" id="submitButton">
                                                 ارسال الرسالة
                                             </button>
+                                            <p id="loadingMessage" style="display: none; color: #052608;">جاري إرسال رسالتك...</p>
                                             <div id="msgSubmit" class="h3 text-left hidden"></div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <!-- Contact Form End -->
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#SendcontactForm').on('submit', function() {
+                                        // إخفاء الزر
+                                        $('#submitButton').hide();
+                                        // إظهار رسالة التحميل
+                                        $('#loadingMessage').show();
+
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

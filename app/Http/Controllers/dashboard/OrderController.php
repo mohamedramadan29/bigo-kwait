@@ -16,7 +16,7 @@ class OrderController extends Controller
         if (Auth::guard('admin')->user()->type == 'suberadmin') {
             $query = Order::orderBy('id', 'desc');
         } else {
-            $query = Order::where('resturant_id', Auth::guard('admin')->user()->resturant_id)->orderBy('id', 'desc');
+            $query = Order::where('store_id', Auth::guard('admin')->user()->store_id)->orderBy('id', 'desc');
         }
 
         // التحقق مما إذا كان هناك تاريخ محدد في الطلب

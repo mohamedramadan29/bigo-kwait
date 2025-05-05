@@ -74,14 +74,15 @@
                                         </div>
                                         <div class="form-group col-12 mb-4">
                                             <label for="password"> كلمة المرور </label>
-                                            <input type="password" name="password" class="form-control" id="password" value="{{ old('password') }}"
-                                                placeholder="" required />
+                                            <input type="password" name="password" class="form-control" id="password"
+                                                value="{{ old('password') }}" placeholder="" required />
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group col-12 mb-4">
                                             <label for="confirm_password"> تاكيد كلمة المرور </label>
-                                            <input type="password" name="confirm_password" class="form-control" value="{{ old('confirm_password') }}"
-                                                id="confirm_password" placeholder="" required />
+                                            <input type="password" name="confirm_password" class="form-control"
+                                                value="{{ old('confirm_password') }}" id="confirm_password" placeholder=""
+                                                required />
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group col-12 mb-4 capatcha_section">
