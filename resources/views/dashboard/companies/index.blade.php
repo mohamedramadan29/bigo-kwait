@@ -27,9 +27,6 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            {{-- <div class="card-header">
-                                <a href="{{ route('dashboard.compa$companys.create') }}" class="btn btn-primary"> اضافة موظف </a>
-                            </div> --}}
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -41,7 +38,7 @@
                                                     <th> البريد الالكتروني </th>
                                                     <th> رقم الهاتف </th>
                                                     <th> اللوجو </th>
-                                                    <th> الحالة </th>
+                                                    <th> حالة التفعيل </th>
                                                     <th> العمليات </th>
                                                 </tr>
                                             </thead>
@@ -56,24 +53,21 @@
                                                         <td>
                                                             {{ $company->phone }}
                                                         </td>
+
                                                         <td>
-                                                            {{ $company->logo }}
+                                                            @if ($company->CompanyInfo)
+                                                                <img width="80px" height="80px" src="{{ asset('assets/uploads/companies/confirm_data/' . $company->id . '/logo/' . $company->CompanyInfo->logo) }}" alt="">
+                                                            @endif
                                                         </td>
                                                         <td>
                                                             {{ $company->status == 1 ? 'مفعل' : 'غير مفعل' }}
                                                         </td>
                                                         <td>
                                                             <a class="btn btn-info btn-sm"
-                                                                href="{{ route('dashboard.compa$companys.update', $company->id) }}"><i
+                                                                href="{{ route('dashboard.companies.update', $company->id) }}"><i
                                                                     class="la la-edit"></i> تعديل </a>
-                                                            <button type="button" class="btn btn-danger btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#delete_compa$company_{{ $company->id }}">
-                                                                حذف <i class="la la-trash"></i>
-                                                            </button>
                                                         </td>
                                                     </tr>
-                                                    @include('dashboard.compa$companys.delete')
                                                 @empty
                                                     <td colspan="8"> لا يوجد بيانات في الوقت الحالي </td>
                                                 @endforelse

@@ -81,6 +81,6 @@ class User extends Authenticatable
     ######## Get The Company Data
 
     public function CompanyInfo(){
-        return $this->hasOne(CompanyProfile::class,'user_id');
+        return $this->belongsTo(CompanyProfile::class,'user_id');
     }
 }

@@ -17,6 +17,7 @@ use App\Http\Controllers\front\store\CouponController;
 use App\Http\Controllers\front\StoreSettingController;
 use App\Http\Controllers\front\EcommercePlanController;
 use App\Http\Controllers\front\store\ProductController;
+use App\Http\Controllers\front\auth\SocialLoginController;
 use App\Http\Controllers\front\store\CategoriesController;
 use App\Http\Controllers\front\store\storeOrderController;
 use App\Http\Controllers\front\store\StoreBannersController;
@@ -150,5 +151,10 @@ Route::prefix('/{store:slug}')->group(function () {
 Route::view('terms', 'front.terms');
 Route::view('privacy-policy', 'front.privacy-policy');
 
+############## Start Social Login Controller ###############
+Route::get('auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.google.callback');
+
+############## End Social Login Controller
 
 @include 'dashboard.php';

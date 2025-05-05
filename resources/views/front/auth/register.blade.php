@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('title')
-    تسجيل الدخول
+    تسجيل حساب جديد
 @endsection
 @section('content')
     <!-- Content -->
@@ -103,7 +103,7 @@
                                 <hr>
                                 <p class="or_login"> سجل من خلال </p>
                                 <div class="social_login">
-                                    <a href="#" class="google-btn">
+                                    <a href="{{ route('auth.google.redirect', 'google') }}" class="google-btn">
                                         <div class="left">+ Google</div>
                                         <div class="right"><i>G+</i></div>
                                     </a>

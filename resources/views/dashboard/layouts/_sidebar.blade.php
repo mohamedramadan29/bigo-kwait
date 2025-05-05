@@ -34,7 +34,7 @@
                   </li>
               @endcan
               @can('users')
-                  <li class="nav-item {{ Route::is('dashboard.users.*') ? 'active' : '' }}"><a href="#"><i
+                  {{-- <li class="nav-item {{ Route::is('dashboard.users.*') ? 'active' : '' }}"><a href="#"><i
                               class="la la-users"></i><span class="menu-title" data-i18n="nav.role.main"> الافراد
                           </span></a>
                       <ul class="menu-content">
@@ -43,7 +43,7 @@
                                   جميع الافراد </a>
                           </li>
                       </ul>
-                  </li>
+                  </li> --}}
               @endcan
               @can('superadmin')
                   <li class="nav-item{{ Route::is('dashboard.admins.*') ? 'active' : '' }}"><a href="#"><i
